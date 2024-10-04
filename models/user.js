@@ -9,11 +9,11 @@ const userSchema = mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
+        unique: true, 
         trim: true,
         lowercase: true,
         validate: {
-            validator: function (email) {
+            validator: function (email) { 
                 // Simple email format validation using regex
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
             },
