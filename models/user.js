@@ -5,8 +5,8 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-    },
-    email: {
+    }, 
+    email: { 
         type: String,
         required: true,
         unique: true, 
@@ -26,13 +26,7 @@ const userSchema = mongoose.Schema({
         required: [true, 'Password is required'],
         trim: true,
         minlength: [6, 'Password must be at least 6 characters long'],
-        validate: {
-            validator: function (password) {
-                // Custom password validation (e.g., must contain at least one number)
-                return /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/.test(password);
-            },
-            message: 'Password must contain at least one number, one uppercase, and one lowercase letter',
-        },
+        
     },
     createdAt: {
         type: Date,
