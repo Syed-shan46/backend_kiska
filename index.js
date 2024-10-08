@@ -1,8 +1,7 @@
 const express = require('express');
+const User = require('./models/user');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const cookieSession = require('cookie-session');
-const cors = require('cors');
 dotenv.config();
 
 
@@ -10,8 +9,6 @@ dotenv.config();
 const connectDB = require('./config/db');
 const authRouter = require('./routes/authRoutes');
 const app = express();
-
-
 
 
 
