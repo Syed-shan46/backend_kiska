@@ -1,19 +1,23 @@
 const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema({
+    googleId: {
+        type: String,
+        unique: true,
+    },
     userName: {
         type: String,
         required: true,
         trim: true,
-    }, 
-    email: { 
+    },
+    email: {
         type: String,
         required: true,
-        unique: true, 
+        unique: true,
         trim: true,
         lowercase: true,
         validate: {
-            validator: function (email) { 
+            validator: function (email) {
                 // Simple email format validation using regex
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
             },
@@ -26,7 +30,7 @@ const userSchema = mongoose.Schema({
         required: [true, 'Password is required'],
         trim: true,
         minlength: [6, 'Password must be at least 6 characters long'],
-        
+
     },
     createdAt: {
         type: Date,
