@@ -74,7 +74,7 @@ exports.signIn = async (req, res) => {
         const { password, ...userWithoutPassword } = findUser._doc;
 
         // Send the response
-        res.json({ token, ...userWithoutPassword });
+        res.json({ token, user:userWithoutPassword });
       }
     }
   } catch (error) {
