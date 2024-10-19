@@ -11,6 +11,7 @@ const bannerRouter = require('./routes/bannerRoutes');
 const categoryRouter = require('./routes/categoryRoutes');
 const subCategoryRouter = require('./routes/subCategoryRoutes');
 const productRouter = require('./routes/productRoutes');
+const addressRouter = require('./routes/addressRoutes');
 
 const app = express();
 
@@ -24,7 +25,7 @@ app.use(bannerRouter);
 app.use(categoryRouter);
 app.use(subCategoryRouter);
 app.use(productRouter);
-
+app.use(addressRouter);
 
 // Start the server 
 const PORT = process.env.PORT || 3000;
