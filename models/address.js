@@ -2,13 +2,18 @@
 const mongoose = require('mongoose');
 
 // Create a schema for the model
-const addressSchema =  mongoose.Schema({
+const addressSchema = mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User',
+  },
   name: {
     type: String,
     required: true, // Name is mandatory
     trim: true // Removes whitespace
   },
-  phone: {
+  phone: { 
     type: String,
     required: true, // Phone is mandatory
     trim: true
