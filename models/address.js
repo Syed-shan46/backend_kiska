@@ -13,7 +13,7 @@ const addressSchema = mongoose.Schema({
     required: true, // Name is mandatory
     trim: true // Removes whitespace
   },
-  phone: { 
+  phone: {
     type: String,
     required: true, // Phone is mandatory
     trim: true

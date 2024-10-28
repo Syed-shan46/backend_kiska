@@ -66,3 +66,24 @@ exports.fetchAddressByUserId = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch address' });
   }
 };
+
+exports.updateAddress = async (req, res) => {
+  try {
+    const { userId, name, phone, country, city, address } = req.body;
+
+    const updatedAddress = await Address.findOneAndUpdate(
+      { userId },
+      { name, phone, country, city, address },
+      { new: true }
+    );
+
+    if (!updatedAddress) {
+      return res.status(404).json({ message: "Address not found." });
+    }
+
+    res.status(200).json({ message: "Address updated successfully.", address: updatedAddress });
+  } catch (error) {
+    console.error("Error updating address:", error);
+    res.status(500).json({ message: "Failed to update address." });
+  }
+}
