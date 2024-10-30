@@ -20,7 +20,7 @@ const app = express();
 app.use(bodyParser.json()); // To parse JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // To parse URL-encoded data
 app.use(express.json());
-app.use(cors());
+app.use(cors());    
 app.use(authRouter);
 app.use(bannerRouter);
 app.use(categoryRouter);
