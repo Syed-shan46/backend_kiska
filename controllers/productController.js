@@ -45,3 +45,13 @@ exports.recommended = async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 }
+
+exports.productsByCategory = async (req, res) => {
+  const { category } = req.params;
+  try {
+    const products = await Product.find({ category });
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ message: 'Error loading Products', error });
+  }
+}

@@ -3,7 +3,7 @@ const Address = require("../models/address");
 exports.addAddress = async (req, res) => {
   try {
     // Extract data from the request body
-    const { userId, name, phone, country, city, address } = req.body;
+    const { userId, name, phone, country, city, address, state, pin } = req.body;
 
     if (!userId) {
       return res.status(400).json({ message: 'User is required' });
@@ -15,6 +15,8 @@ exports.addAddress = async (req, res) => {
       name,
       phone,
       country,
+      state,
+      pin,
       city,
       address
     });
@@ -69,11 +71,11 @@ exports.fetchAddressByUserId = async (req, res) => {
 
 exports.updateAddress = async (req, res) => {
   try {
-    const { userId, name, phone, country, city, address } = req.body;
+    const { userId, name, phone, country, city, address, state, pin } = req.body;
 
     const updatedAddress = await Address.findOneAndUpdate(
       { userId },
-      { name, phone, country, city, address },
+      { name, phone, country, city, address, state, pin },
       { new: true }
     );
 

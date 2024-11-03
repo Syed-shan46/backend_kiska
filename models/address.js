@@ -28,10 +28,18 @@ const addressSchema = mongoose.Schema({
     required: true, // City is mandatory
     trim: true
   },
+  state: {
+    type: String,
+    required: true,
+  },
   address: {
     type: String,
     required: true, // Address is mandatory
     trim: true
+  },
+  pin: {
+    type: String,
+    required: true,
   }
 });
 
