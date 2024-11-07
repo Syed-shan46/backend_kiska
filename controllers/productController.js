@@ -91,3 +91,27 @@ exports.updateProduct = async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 };
+
+exports.deleteProduct = async (req, res) => {
+  try {
+    const { productId } = req.params;
+
+    // Check if the product exists
+    const product = await Product.findById(productId);
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    // Delete the product
+    await Product.findByIdAndDelete(productId);
+
+    return res.status(200).json({ message: 'Product deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting product:', error); // Logs detailed error in the server console
+    return res.status(500).json({
+      message: 'Server error occurred while deleting the product',
+      error: error.message  // Includes the specific error message in the response
+    });
+
+  }
+}
