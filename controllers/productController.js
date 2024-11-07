@@ -55,3 +55,39 @@ exports.productsByCategory = async (req, res) => {
     res.status(500).json({ message: 'Error loading Products', error });
   }
 }
+
+// Get product by ID
+exports.getProductById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    res.status(200).json(product);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+};
+
+// Update product by ID
+exports.updateProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { productName, productPrice, quantity, description, category, subCategory, images, popular, recommend } = req.body;
+
+    const updatedProduct = await Product.findByIdAndUpdate(
+      id,
+      { productName, productPrice, quantity, description, category, subCategory, images, popular, recommend },
+      { new: true, runValidators: true }
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.status(200).json(updatedProduct);
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+};
