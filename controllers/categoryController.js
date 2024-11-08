@@ -19,3 +19,12 @@ exports.getCategory = async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 }
+
+exports.deleteCategory = async (req,res)=> {
+  try {
+    const {categoryId} = req.params;
+    const category = await Category.findById(categoryId);
+  } catch (error) {
+    
+  }
+}
