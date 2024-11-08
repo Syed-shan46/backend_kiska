@@ -1,6 +1,14 @@
 
 const mongoose = require('mongoose');
 
+const productSchema = new mongoose.Schema({
+  name: String,
+  quantity: Number,
+  category: String,
+  image: String,
+  price: Number,
+});
+
 const orderSchema = mongoose.Schema({
 
   userId: {
@@ -39,6 +47,8 @@ const orderSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+
+  products: [productSchema],
 
   quantity: {
     type: String,
