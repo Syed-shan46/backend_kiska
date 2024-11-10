@@ -76,6 +76,11 @@ const orderSchema = mongoose.Schema({
     default: 'Pending',
   },
 
+  orderStatus:{
+    type:String,
+    default: 'Processing'
+  },
+
   delivered: {
     type: Boolean,
     default: true,
