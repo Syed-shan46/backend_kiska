@@ -98,7 +98,7 @@ exports.acceptOrder = async (req, res) => {
     const order = await Order.findById(orderId).populate('userId', 'email userName');
 
     if (!order) {
-      return res.status(404).json({ message: 'Order not found' });
+      return res.status(404).json({ message: 'Order not found' }) ;
     }
 
     const userEmail = order.userId?.email;
