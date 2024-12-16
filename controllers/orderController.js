@@ -5,7 +5,7 @@ const { sendOrderEmail, sendUserOrderConfirmation } = require('./mailController'
 
 exports.createOrder = async (req, res) => {
   try {
-    const { userId, name, phone, country, city, address, productName, quantity, category, image, totalAmount, paymentStatus } = req.body;
+    const { userId, name, phone, address, productName, quantity, category, image, totalAmount, paymentStatus } = req.body;
     // Fetch the user's email from the User model using userId
     const user = await User.findById(userId).select('email userName');
     if (!user) {
@@ -29,9 +29,7 @@ exports.createOrder = async (req, res) => {
       userId,
       name,
       phone,
-      country,
       address,
-      city,
       productName,
       quantity,
       category,
@@ -45,12 +43,7 @@ exports.createOrder = async (req, res) => {
     await newOrder.save();
     // Send order details email to admin
     console.log('Sending email to admin for order placement...');
-    await sendOrderEmail({
-      orderId: newOrder._id,
-      products,
-      totalAmount,
-      userEmail,
-    });
+  
     // **Step 2: Confirm successful order creation to the user (Optional)**
     console.log('Order placed successfully. Admin notified via email.');
 
